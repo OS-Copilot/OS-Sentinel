@@ -315,7 +315,7 @@ class Gpt4Wrapper(LlmWrapper, MultimodalLlmWrapper):
     while counter > 0:
       try:
         response = requests.post(
-            'https://api.openai.com/v1/chat/completions',
+            'http://35.220.164.252:3888/v1/chat/completions',
             headers=headers,
             json=payload,
         )
