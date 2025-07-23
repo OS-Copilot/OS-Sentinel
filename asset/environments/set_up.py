@@ -42,8 +42,8 @@ def convert_jpg_to_bmp():
 
 
 class EnvBuilder:
-    def __init__(self, parser, avd_name):
-        self.avd_name = avd_name
+    def __init__(self, parser):
+        self.avd_name = parser.avd_name
         self.base_port = parser.port
         self.port = {}
         self.device_type = {}
@@ -55,9 +55,9 @@ class EnvBuilder:
             0.85,
             1.15,
             0.85,
-        ]  # predefine variable on icon size (72~840)
-        self.log_dir = parser.log_dir
-        self.mode = parser.mode
+        ]
+        self.log_dir = f"{_LOG_PATH}/environment"
+        self.mode = "test"
 
         # load_env_list
         self.target_env_dir = f"{_CONFIG_PATH}/environments_{self.mode}.csv"
@@ -317,13 +317,8 @@ class EnvBuilder:
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    # avd
-    parser.add_argument("--avd_name", type=str, default=f"pixel7")
-    parser.add_argument("--mode", type=str, default="train", help="['train', 'test']")
+    parser.add_argument("--avd_name", type=str, default=f"AndroidWorldAvd")
     parser.add_argument("--port", type=int, default=6555)
-    # log
-    parser.add_argument("--log_dir", type=str, default=f"{_LOG_PATH}/environment")
-
     args = parser.parse_args()
     return args
 
@@ -333,24 +328,6 @@ def run(args):
     convert_jpg_to_bmp()
 
     # turning on avd
-    env_builder = EnvBuilder(args, args.avd_name)
-
+    env_builder = EnvBuilder(args)
     env_builder.build_devices()
     env_builder.build_environments(args.mode)
-
-
-if __name__ == "__main__":
-    args = parse_args()
-    args.avd_name = args.avd_name.zfill(2)
-
-    # logging directory
-    log_dir = args.log_dir
-    avd_log_dir = f"{log_dir}/{args.avd_name}"
-    if not os.path.isdir(log_dir):
-        os.makedirs(log_dir)
-    if not os.path.isdir(avd_log_dir):
-        os.makedirs(avd_log_dir)
-    args.log_dir = avd_log_dir
-
-    # main run
-    run(args)

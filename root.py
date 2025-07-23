@@ -1,0 +1,56 @@
+import os
+
+from dataclasses import dataclass
+from minimal_task_runner import _find_adb_directory
+
+def _init_env():
+    repo_path = os.path.split(__file__)[0]
+    os.environ["MOBILE_SAFETY_HOME"] = repo_path
+
+    assert "JAVA_HOME" in os.environ
+    assert "APPIUM_BIN" in os.environ
+
+    if "ANDROID_SDK_ROOT" not in os.environ:
+        sdk_path = os.path.split(os.path.split(_find_adb_directory())[0])[0]
+        sdk_path = os.path.normpath(sdk_path)
+        os.environ["ANDROID_SDK_ROOT"] = sdk_path
+
+        os.environ["PATH"] = os.path.join(sdk_path, "platform-tools") \
+            + os.pathsep \
+            + os.environ["PATH"]
+        os.environ["PATH"] = os.path.join(sdk_path, "emulator") \
+            + os.pathsep \
+            + os.environ["PATH"]
+
+    return True
+
+def _init_apk():
+    return True
+
+def _init_avd():
+    from asset.environments import set_up as setup
+
+    jpg_path = f"{setup._RESOURCE_PATH}/wallpapers_jpg"
+    bmp_path = f"{setup._RESOURCE_PATH}/wallpapers_bmp"
+    if len(os.listdir(jpg_path)) != len(os.listdir(bmp_path)):
+        setup.convert_jpg_to_bmp()
+
+    @dataclass
+    class EnvParam:
+        avd_name: str
+        port: int
+
+    env_builder = setup.EnvBuilder(EnvParam(
+        avd_name="AndroidWorldAvd",
+        port=5554
+    ))
+    env_builder.build_devices()
+
+    return True
+
+def init():
+    return all([_init_env(), _init_apk(), _init_avd()])
+
+if __name__ == "__main__":
+    _init_env()
+    _init_avd()
