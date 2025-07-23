@@ -1,0 +1,1 @@
+ADDITIONAL_ACTIONS = """- **open-maps()**: This function is used to directly open the Google Maps application."""

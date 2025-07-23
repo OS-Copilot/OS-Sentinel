@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="internal_storage_path">/storage/emulated/0</string>
+    <int name="last_version" value="240" />
+    <int name="view" value="7" />
+    <string name="sd_card_path_2"></string>
+    <boolean name="was_orange_icon_checked" value="true" />
+    <int name="app_sideloading_status" value="2" />
+    <int name="app_run_count" value="2" />
+    <string name="app_id">com.simplemobiletools.calendar.pro</string>
+    <boolean name="caldav_sync" value="false" />
+    <int name="last_handled_shortcut_color" value="-689152" />
+    <set name="display_event_types">
+        <string>1</string>
+    </set>
+</map>

@@ -1,0 +1,1 @@
+ADDITIONAL_ACTIONS = """- **open-walmart()**: This function is used to directly open 'https://www.walmart.com' on Chrome."""

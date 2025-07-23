@@ -1,0 +1,1 @@
+ADDITIONAL_ACTIONS = """- **open-wikihow()**: This function is used to directly open 'https://www.wikihow.com' on Chrome."""

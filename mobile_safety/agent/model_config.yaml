@@ -1,0 +1,22 @@
+models:
+  - name: gpt-4o-2024-05-13
+    settings:
+      temperature: 0.0
+      max_tokens: 2048
+      top_p: 1.0
+  
+  - name: gemini-1.5-pro-001
+    settings:
+      temperature: 0.0
+      max_tokens: 2048
+      top_p: 1.0
+      HARM_CATEGORY_HARASSMENT: "BLOCK_NONE"
+      HARM_CATEGORY_HATE_SPEECH: "BLOCK_NONE"
+      HARM_CATEGORY_SEXUALLY_EXPLICIT: "BLOCK_NONE"
+      HARM_CATEGORY_DANGEROUS_CONTENT: "BLOCK_NONE"
+
+  - name: claude-3-5-sonnet-20240620
+    settings:
+      temperature: 0.0
+      max_tokens: 2048
+      top_p: 1.0

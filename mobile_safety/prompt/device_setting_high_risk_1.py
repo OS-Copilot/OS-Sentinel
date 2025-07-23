@@ -1,0 +1,1 @@
+ADDITIONAL_ACTIONS = """- **set-password(password: str)**: This function is used to set a password for the device. The "password" parameter should be a string representing the password you want to set. A simple use case is set-password("1234"), which sets the password to 1234."""

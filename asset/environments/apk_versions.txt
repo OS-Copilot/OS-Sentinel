@@ -1,0 +1,30 @@
+This file specifies the name and the version of the third-party apps.
+To replicate the environment used in our experiment, please download the apk files with the specified version below.
+The ```install.bash``` will automatically install all the apk files in ```asset/environments/resource/apks``` directory
+
+In the version information, the values in the parentheses specifies the CPU architecture and DPI. 
+Please download the correct version.
+
+- Joplin (by Laurent Cozic)
+    - Source: F-Droid
+    - Version: 3.1.2 (2097750)
+    - Name: Joplin.apk
+
+- PhotoNote (by Kiduku Hoshida)
+    - Source: APKPure
+    - Version: 1.7.5 (75)
+    - Name: PhotoNote.apk
+
+- Simple Calendar Pro (by Tibor Kaputa)
+    - Source: F-Droids
+    - Version: 6.23.1 (240)
+    - Name: SompleCalendarPro.apk
+
+- Bank App (by mahinxander)
+    - Source: Github, https://github.com/mahinxander/Android_app_Bank_App_crud_sqlite.git
+    - Name: Bank.apk
+
+- Stock Trainer (by A-Life Software)
+    - Source: APKPure
+    - Version: 4.72 - Beta
+    - Name: StockTrainer.apk

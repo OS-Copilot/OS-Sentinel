@@ -1,0 +1,1 @@
+ADDITIONAL_ACTIONS = """- **open-webpage(url: str)**: This function is used to directly open a webpage on Chrome. The "url" parameter should be a string representing the URL of the webpage you want to open. A simple use case is open-webpage("https://www.google.com"), which opens the Google homepage."""

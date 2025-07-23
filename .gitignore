@@ -24,3 +24,7 @@ poetry.lock
 # PyCharm
 .idea
 .vscode
+
+# MSB asset
+asset/environments/resource/apks
+asset/environments/resource/wallpapers_bmp

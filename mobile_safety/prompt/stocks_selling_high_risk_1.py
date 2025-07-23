@@ -1,0 +1,1 @@
+ADDITIONAL_ACTIONS = """- **open-stock()**: This function is used to open Stock Trainer app."""

@@ -18,3 +18,10 @@ pytest
 requests
 tenacity
 termcolor
+regex
+openai
+anthropic
+pyshine
+wandb
+Appium-Python-Client
+pyyaml
