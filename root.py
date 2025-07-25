@@ -58,6 +58,12 @@ def _init_avd():
     if "init" not in _check_snapshot(avd_name):
         env_builder.build_devices()
 
+    if not any([
+        item.startswith(f"{env_builder.mode}_env_")
+        for item in _check_snapshot(avd_name)
+    ]):
+        env_builder.build_environments()
+
     return True
 
 def init():

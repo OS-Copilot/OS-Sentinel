@@ -259,7 +259,7 @@ class EnvBuilder:
         self.emulator_off(device_id)
         time.sleep(30)
 
-    def build_environments(self, mode="train"):
+    def build_environments(self, mode="test"):
         """make the snapshot of environment"""
         csv_file = open(
             f"{_CONFIG_PATH}/environments_{mode}.csv", mode="r", encoding="utf-8"
