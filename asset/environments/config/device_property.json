@@ -1,12 +1,12 @@
 {
    "device_info": [
       {
-         "device_id": "pixel_7",
-         "device_code": 29,
-         "physical_setting": [1080, 2400, 400],
+         "device_id": "pixel_6",
+         "device_code": 33,
+         "physical_setting": [1080, 2400, 420],
          "icon_size": [330, 440, 550],
          "category": "pixel",
-         "system_image": "system-images;android-34;google_apis;x86_64"
+         "system_image": "system-images;android-33;google_apis;x86_64"
       }
    ]
 }

@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 from dataclasses import dataclass
 from minimal_task_runner import _find_adb_directory
@@ -27,6 +28,22 @@ def _init_env():
 def _init_apk():
     return True
 
+@dataclass
+class EnvParam:
+    avd_name: str
+    port: int
+
+def _check_snapshot(avd_name):
+    snapshots = subprocess.run(
+        "emulator -snapshot-list",
+        shell=True,
+        capture_output=True,
+        text=True
+    ).stdout.split("\n")
+
+    snapshot = [item for item in snapshots if item.startswith(avd_name)][0]
+    return snapshot.split(": ")[1].split(", ")[:-1]
+
 def _init_avd():
     from asset.environments import set_up as setup
 
@@ -35,16 +52,11 @@ def _init_avd():
     if len(os.listdir(jpg_path)) != len(os.listdir(bmp_path)):
         setup.convert_jpg_to_bmp()
 
-    @dataclass
-    class EnvParam:
-        avd_name: str
-        port: int
+    avd_name = "AndroidWorldAvd"
+    env_builder = setup.EnvBuilder(EnvParam(avd_name=avd_name, port=5554))
 
-    env_builder = setup.EnvBuilder(EnvParam(
-        avd_name="AndroidWorldAvd",
-        port=5554
-    ))
-    env_builder.build_devices()
+    if "init" not in _check_snapshot(avd_name):
+        env_builder.build_devices()
 
     return True
 

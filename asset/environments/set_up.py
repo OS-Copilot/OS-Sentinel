@@ -98,9 +98,8 @@ class EnvBuilder:
 
     def emulator_on(self, device_id):
         """turn on all devices"""
-        avd_name = f"{device_id}_{self.mode}_{self.avd_name}"
         cmd = (
-            f"/bin/bash {_SCRIPT_PATH}/emulator_on.sh {avd_name} {self.port[device_id]}"
+            f"/bin/bash {_SCRIPT_PATH}/emulator_on.sh {self.avd_name} {self.port[device_id]}"
         )
 
         result = subprocess.run(cmd, text=True, shell=True)
@@ -229,44 +228,39 @@ class EnvBuilder:
         time.sleep(1)
 
     def build_devices(self):
-        """make the snapshot of each environment"""
+        """make the snapshot of environment"""
+        assert len(self.device_info) == 1
+        device_info = self.device_info[0]
+        device_id = device_info["device_id"]
 
-        for device_info in self.device_info:
-            avd_name = f'{device_info["device_id"]}_{self.mode}_{self.avd_name}'
-            cmd = f'/bin/bash {_SCRIPT_PATH}/avd_creation.sh {avd_name} "{self.system_image[device_info["device_id"]]}" {self.device_code[device_info["device_id"]]}'
-            _ = subprocess.run(cmd, text=True, shell=True)
+        self.emulator_on(device_id)
 
-            device_id = device_info["device_id"]
+        if self.device_type[device_id] != "pixel":
+            self.permission_init(device_id)
 
-            print(f"\n\navd {device_id} created")
-            self.emulator_on(device_id)
+        # disable unnecessary apps
+        # self.apk_disable(device_id)
 
-            if self.device_type[device_id] != "pixel":
-                self.permission_init(device_id)
+        # appium server init
+        self.appium_port = utils.get_port(4723, 5000, 1)
+        self.appium_process, self.appium_servertime = appium_lib.launch_server(
+            self.appium_port
+        )
 
-            # disable unnecessary apps
-            # self.apk_disable(device_id)
+        # init apps
+        self.initialize_apps(device_id, self.avd_name)
+        
+        # close appium server
+        self.appium_process.terminate()
 
-            # appium server init
-            self.appium_port = utils.get_port(4723, 5000, 1)
-            self.appium_process, self.appium_servertime = appium_lib.launch_server(
-                self.appium_port
-            )
+        self.snapshot_save(device_id, "init")
+        self.screenshot_save(device_id, "init")
 
-            # init apps
-            self.initialize_apps(device_id, avd_name)
-            
-            # close appium server
-            self.appium_process.terminate()
-
-            self.snapshot_save(device_id, "init")
-            self.screenshot_save(device_id, "init")
-
-            self.emulator_off(device_id)
-            time.sleep(30)
+        self.emulator_off(device_id)
+        time.sleep(30)
 
     def build_environments(self, mode="train"):
-        """make the snapshot of each environment"""
+        """make the snapshot of environment"""
         csv_file = open(
             f"{_CONFIG_PATH}/environments_{mode}.csv", mode="r", encoding="utf-8"
         )
