@@ -1,5 +1,6 @@
 import os
 import subprocess
+import requests
 
 from dataclasses import dataclass
 from minimal_task_runner import _find_adb_directory
@@ -26,6 +27,27 @@ def _init_env():
     return True
 
 def _init_apk():
+    apk_path = lambda filename: os.path.join(
+        os.environ["MOBILE_SAFETY_HOME"],
+        "asset/environments/resource/apks",
+        filename
+    )
+
+    def download(filename, url):
+        if os.path.exists(apk_path(filename)):
+            return
+
+        with requests.get(url, stream=True) as response:
+            response.raise_for_status()
+            with open(apk_path(filename), "wb") as file:
+                for chunk in response.iter_content(chunk_size=8192):
+                    file.write(chunk)
+
+    download("Joplin.apk", "...")
+    download("PhotoNote.apk", "...")
+    download("SimpleCalendarPro.apk", "...")
+    download("StockTrainer.apk", "...")
+
     return True
 
 @dataclass
@@ -71,4 +93,5 @@ def init():
 
 if __name__ == "__main__":
     _init_env()
+    _init_apk()
     _init_avd()

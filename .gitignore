@@ -26,5 +26,6 @@ poetry.lock
 .vscode
 
 # MSB asset
+logs/
 asset/environments/resource/apks
 asset/environments/resource/wallpapers_bmp
