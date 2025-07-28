@@ -6,7 +6,7 @@ max_attempts=20
 attempts=0
 
 # emulator -port $port -avd $avd_name -no-audio -no-window -no-skin -no-snapshot-load -gpu "swiftshader_indirect" &
-emulator -port $port -avd $avd_name -no-audio -no-skin -no-snapshot-load -gpu "swiftshader_indirect" &
+emulator -port $port -avd $avd_name -no-audio -no-skin -no-snapshot-load -gpu "swiftshader" -feature -Vulkan &
 
 adb -s emulator-$port wait-for-device
 
