@@ -81,7 +81,7 @@ class Logger:
 
             # print image
             plt.imshow(img_obs)
-            plt.show()
+            # plt.show()
 
             # progress log
             print("progress:", timestep.progress)

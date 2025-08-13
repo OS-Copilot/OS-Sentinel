@@ -25,3 +25,4 @@ pyshine
 wandb
 Appium-Python-Client
 pyyaml
+lxml
