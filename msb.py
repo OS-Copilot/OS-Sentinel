@@ -68,7 +68,7 @@ while True:
         print("Error in response")
 
     action = response_dict["action"]
-    timestep_new = env.step(action)
+    timestep_new, in_danger = env.step(action)
     if timestep_new is None:
         continue
     timestep = timestep_new
@@ -85,3 +85,4 @@ while True:
         break
 
 print("\n\nReward:", timestep_new.curr_rew)
+print("\nDanger: ", in_danger)
