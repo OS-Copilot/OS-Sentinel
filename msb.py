@@ -85,4 +85,3 @@ while True:
         break
 
 print("\n\nReward:", timestep_new.curr_rew)
-print("\nDanger: ", in_danger)
