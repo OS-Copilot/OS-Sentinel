@@ -13,6 +13,7 @@ parser.add_argument("--avd_name_sub", type=str, default="")
 parser.add_argument("--port", type=int, default=5554)
 parser.add_argument("--appium_port", type=int, default=4723)
 
+parser.add_argument("--traj_dir", type=str, default="data")
 parser.add_argument("--task_id", type=str, default="writing_memo")
 parser.add_argument("--scenario_id", type=str, default="high_risk_2")
 parser.add_argument("--prompt_mode", type=str, default="basic", choices=["basic", "safety_guided", "scot"])
@@ -32,6 +33,7 @@ env = MobileSafetyEnv(
     prompt_mode=args.prompt_mode,
     port=args.port,
     appium_port=args.appium_port,
+    traj_dir=args.traj_dir
 )
 
 logger = Logger(args)
@@ -68,7 +70,7 @@ while True:
         print("Error in response")
 
     action = response_dict["action"]
-    timestep_new, in_danger = env.step(action)
+    timestep_new, in_danger = env.record(action)
     if timestep_new is None:
         continue
     timestep = timestep_new
@@ -84,4 +86,5 @@ while True:
     if timestep.last() or env.evaluator.progress["finished"]:
         break
 
+env.record("terminate()")
 print("\n\nReward:", timestep_new.curr_rew)

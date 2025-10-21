@@ -128,8 +128,73 @@ def quick_state_hash(port, paths):
     return hashlib.md5(listing.encode()).hexdigest()
 
 def recorder_handler(method: Callable[["MobileSafetyEnv", str], "MobileSafetyTimeStep"]):
-    def recorder_wrapper(self: "MobileSafetyEnv", action: str = None):
-        return method(self, action)
+    def recorder_wrapper(self: "MobileSafetyEnv", action: str = ""):
+        images_dir = os.path.join(self.traj_dir, "images")
+        jsons_dir = os.path.join(self.traj_dir, "jsons")
+        objects_dir = os.path.join(self.traj_dir, "objects")
+
+        os.makedirs(self.traj_dir, exist_ok=True)
+        for d in (images_dir, jsons_dir, objects_dir):
+            os.makedirs(d, exist_ok=True)
+
+        assert len(action) > 0
+        func_name = action.split("(")[0]
+
+        step_index = len(os.listdir(images_dir)) + 1
+        format_index = f"{step_index:03d}"
+        ts = str(int(time.time() * 1000))
+
+        # save image
+        image_name = f"{format_index}_{func_name}_{ts}.png"
+        image_path = os.path.join(images_dir, image_name)
+
+        with open(image_path, "wb") as f:
+            f.write(self.driver.get_screenshot_as_png())
+
+        # save json
+        json_name = f"{format_index}_{func_name}_{ts}.json"
+        json_path = os.path.join(jsons_dir, json_name)
+
+        check_list = ["/system", "/vendor", "/data"]
+        state_hash = quick_state_hash(self.port, check_list)
+        texts = screen_text(self)
+
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump({
+                "fs": {"hash": state_hash},
+                "screen": {"text": texts}
+            }, f, ensure_ascii=False, indent=2)
+
+        objects_name = f"objects_{format_index}_{func_name}_{ts}.json"
+        objects_path = os.path.join(objects_dir, objects_name)
+
+        objects_payload = json.dumps(self.parsed_obs, ensure_ascii=False)
+        with open(objects_path, "w", encoding="utf-8") as f:
+            f.write(objects_payload)
+
+        traj_path = os.path.join(self.traj_dir, "trajectory.json")
+        rel_image = os.path.relpath(image_path, start=self.traj_dir).replace("\\", "/")
+        rel_objects = os.path.relpath(objects_path, start=self.traj_dir).replace("\\", "/")
+
+        traj_obj = {
+            "query": "N/A",
+            "application": "oss",
+            "platform_type": "Android",
+            "trajectory": []
+        }
+        if os.path.exists(traj_path):
+            traj_obj = json.load(open(traj_path, "r", encoding="utf-8"))
+
+        traj_obj["trajectory"].append({
+            "action": action,
+            "observation": rel_image,
+            "objects": rel_objects
+        })
+
+        with open(traj_path, "w", encoding="utf-8") as f:
+            json.dump(self.traj_dir, f, ensure_ascii=False, indent=2)
+        return None if func_name == "timeout" else method(self, action)
+
     return recorder_wrapper
 
 def checker_handler(method: Callable[["MobileSafetyEnv", str], "MobileSafetyTimeStep"]):
@@ -221,6 +286,7 @@ class MobileSafetyEnv:
         task_tag: str = "",
         is_emu_already_open: bool = False,
         prompt_mode: str = "",
+        traj_dir: str = ""
     ):
 
         self.avd_name = avd_name
@@ -228,6 +294,7 @@ class MobileSafetyEnv:
         self.gui = gui
         self.delay = delay
         self.prompt_mode = prompt_mode
+        self.traj_dir = traj_dir
 
         # appium
         if appium_port:
