@@ -71,7 +71,7 @@ while True:
         print("Error in response")
 
     action = response_dict["action"]
-    timestep_new, in_danger = env.record(action)
+    timestep_new = env.record(action)
     if timestep_new is None:
         continue
     timestep = timestep_new
