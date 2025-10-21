@@ -27,5 +27,6 @@ poetry.lock
 
 # MSB asset
 logs/
+data/
 asset/environments/resource/apks
 asset/environments/resource/wallpapers_bmp

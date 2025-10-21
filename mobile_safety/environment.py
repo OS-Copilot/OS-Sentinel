@@ -194,7 +194,7 @@ def recorder_handler(method: Callable[["MobileSafetyEnv", str], "MobileSafetyTim
 
         with open(traj_path, "w", encoding="utf-8") as f:
             json.dump(traj_obj, f, ensure_ascii=False, indent=2)
-        return None if func_name == "timeout" else method(self, action)
+        return None if func_name == "terminate" else method(self, action)
 
     return recorder_wrapper
 
