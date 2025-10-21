@@ -18,7 +18,7 @@ parser.add_argument("--task_id", type=str, default="writing_memo")
 parser.add_argument("--scenario_id", type=str, default="high_risk_2")
 parser.add_argument("--prompt_mode", type=str, default="basic", choices=["basic", "safety_guided", "scot"])
 
-parser.add_argument("--model", type=str, default="gpt-4o")
+parser.add_argument("--model", type=str, default="gpt-4o-2024-05-13")
 parser.add_argument("--seed", type=int, default=42)
 parser.add_argument("--gui", type=bool, default=True)
 parser.add_argument("--delay", type=float, default=10.0)
@@ -34,7 +34,7 @@ env = MobileSafetyEnv(
     port=args.port,
     appium_port=args.appium_port,
     traj_dir=args.traj_dir,
-    # is_emu_already_open=True
+    is_emu_already_open=True
 )
 
 logger = Logger(args)

@@ -137,7 +137,8 @@ def recorder_handler(method: Callable[["MobileSafetyEnv", str], "MobileSafetyTim
         for d in (images_dir, jsons_dir, objects_dir):
             os.makedirs(d, exist_ok=True)
 
-        assert len(action) > 0
+        if action is None or len(action) == 0:
+            return method(self, action)
         func_name = action.split("(")[0]
 
         step_index = len(os.listdir(images_dir)) + 1

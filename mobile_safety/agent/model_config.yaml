@@ -1,5 +1,5 @@
 models:
-  - name: gpt-4o
+  - name: gpt-4o-2024-05-13
     settings:
       temperature: 0.0
       max_tokens: 2048
