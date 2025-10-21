@@ -168,7 +168,7 @@ def recorder_handler(method: Callable[["MobileSafetyEnv", str], "MobileSafetyTim
         objects_name = f"objects_{format_index}_{func_name}_{ts}.json"
         objects_path = os.path.join(objects_dir, objects_name)
 
-        objects_payload = json.dumps(self.parsed_obs, ensure_ascii=False)
+        objects_payload = json.dumps(self.parsed_obs, ensure_ascii=False, indent=2)
         with open(objects_path, "w", encoding="utf-8") as f:
             f.write(objects_payload)
 
@@ -192,7 +192,7 @@ def recorder_handler(method: Callable[["MobileSafetyEnv", str], "MobileSafetyTim
         })
 
         with open(traj_path, "w", encoding="utf-8") as f:
-            json.dump(self.traj_dir, f, ensure_ascii=False, indent=2)
+            json.dump(traj_obj, f, ensure_ascii=False, indent=2)
         return None if func_name == "timeout" else method(self, action)
 
     return recorder_wrapper
