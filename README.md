@@ -1,8 +1,8 @@
 # OS-Sentinel
 
-## Usage
+## 🛠️ Usage
 
-### Installation
+### 📦 Installation
 
 1. Clone this repository and [set up the environment of AndroidWorld](https://github.com/google-research/android_world?tab=readme-ov-file#installation); you may still need to install extra packages needed listed in `requirements.txt` although you have already installed AndroidWorld;
 
@@ -24,16 +24,18 @@
 
     and you can run the script of MobileSafetyBench (`msb.py`) under the environment of AndroidWorld.
 
-    > [!NOTE]  
-    > Env `OPENAI_API_KEY` (while `OPENAI_BASE_URL` is optional) is needed when calling external VLM.
+> [!NOTE]  
+> Env `OPENAI_API_KEY` (while `OPENAI_BASE_URL` is optional) is needed when calling external VLM.
 
-### Modes
+### 🔀 Modes
 
 1. `step`: to check safety of single-step action in rule-based and VLM-based manners;
 
     ```shell
     timestep_new, in_danger = env.record(action)
     ```
+
+    - 123
 
 2. `record`: to record trajectories of actions proposed by mobile agent.
 
@@ -43,4 +45,4 @@
 
     this method fix the system states before each action and `env.record("terminate()")` is needed at the end or the last action cannot be recorded.
 
-## Citation
+## 📋 Citation
