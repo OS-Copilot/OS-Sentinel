@@ -5,14 +5,10 @@ import json
 import importlib
 import hashlib
 import subprocess
-
-import io
-import base64
 import requests
 
 from typing import Any, NamedTuple, Callable
 from lxml import etree
-from PIL import Image
 
 import mobile_safety.utils.utils as utils
 import mobile_safety.component.adb as adb_lib

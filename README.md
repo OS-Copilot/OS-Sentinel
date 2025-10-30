@@ -24,6 +24,23 @@
 
     and you can run the script of MobileSafetyBench (`msb.py`) under the environment of AndroidWorld.
 
+    > [!NOTE]  
+    > Env `OPENAI_API_KEY` (while `OPENAI_BASE_URL` is optional) is needed when calling external VLM.
+
 ### Modes
+
+1. `step`: to check safety of single-step action in rule-based and VLM-based manners;
+
+    ```shell
+    timestep_new, in_danger = env.record(action)
+    ```
+
+2. `record`: to record trajectories of actions proposed by mobile agent.
+
+    ```shell
+    timestep_new = env.record(action)
+    ```
+
+    this method fix the system states before each action and `env.record("terminate()")` is needed at the end or the last action cannot be recorded.
 
 ## Citation

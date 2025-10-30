@@ -1,9 +1,21 @@
 import os
 import subprocess
 import requests
-
 from dataclasses import dataclass
-from minimal_task_runner import _find_adb_directory
+
+def _find_adb_directory():
+    potential_paths = [
+        os.path.expanduser('~/Library/Android/sdk/platform-tools/adb'),
+        os.path.expanduser('~/Android/Sdk/platform-tools/adb'),
+    ]
+    for path in potential_paths:
+        if os.path.isfile(path):
+            return path
+    raise EnvironmentError(
+        'adb not found in the common Android SDK paths. Please install Android'
+        " SDK and ensure adb is in one of the expected directories. If it's"
+        ' already installed, point to the installed location.'
+    )
 
 def _init_env():
     repo_path = os.path.split(__file__)[0]
