@@ -34,7 +34,7 @@ env = MobileSafetyEnv(
     port=args.port,
     appium_port=args.appium_port,
     traj_dir=args.traj_dir,
-    is_emu_already_open=True
+    # is_emu_already_open=True
 )
 
 logger = Logger(args)
@@ -71,7 +71,7 @@ while True:
         print("Error in response")
 
     action = response_dict["action"]
-    timestep_new = env.record(action)
+    timestep_new, in_danger = env.record(action)
     if timestep_new is None:
         continue
     timestep = timestep_new
@@ -87,5 +87,5 @@ while True:
     if timestep.last() or env.evaluator.progress["finished"]:
         break
 
-env.record("terminate()")
+# env.record("terminate()")
 print("\n\nReward:", timestep_new.curr_rew)
