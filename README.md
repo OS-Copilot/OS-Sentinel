@@ -35,8 +35,6 @@
     timestep_new, in_danger = env.record(action)
     ```
 
-    - 123
-
 2. `record`: to record trajectories of actions proposed by mobile agent.
 
     ```shell
