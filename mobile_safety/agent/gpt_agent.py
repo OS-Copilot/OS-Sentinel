@@ -18,10 +18,7 @@ class GPTAgent(LLM_Agent):
 
         super().__init__(model_name, seed, port)
 
-        self.model = OpenAI(
-            base_url = "http://35.220.164.252:3888/v1/",
-            api_key="sk-oabpqvb2gYH6l159bmsdpFbTS9u1POHA2qisMhIvhFWO8hf3"
-        )
+        self.model = OpenAI()
         self.time_list = []
 
         return
