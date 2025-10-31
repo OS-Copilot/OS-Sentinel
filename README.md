@@ -1,4 +1,9 @@
 # OS-Sentinel
+[![arXiv](https://img.shields.io/badge/arXiv-2510.24411-b31b1b.svg)](http://arxiv.org/abs/2510.24411) 
+![License](https://img.shields.io/badge/License-MIT-blue)
+[![Paper page](https://huggingface.co/datasets/huggingface/badges/resolve/main/paper-page-sm.svg)](https://huggingface.co/papers/2510.24411)
+[![Discord](https://img.shields.io/discord/1222168244673314847?logo=discord&style=flat)](https://discord.com/invite/rXS2XbgfaD)
+[![🌐 Website](https://img.shields.io/badge/Website-🌐-informational)](https://qiushisun.github.io/OS-Sentinel-Home/)
 
 ## 🛠️ Usage
 
@@ -44,3 +49,12 @@
     this method fix the system states before each action and `env.record("terminate()")` is needed at the end or the last action cannot be recorded.
 
 ## 📋 Citation
+```bibtex
+@article{sun2025ossentinel,
+  title={OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows},
+  author={Qiushi Sun and Mukai Li and Zhoumianze Liu and Zhihui Xie and Fangzhi Xu and Zhangyue Yin and Kanzhi Cheng and Zehao Li and Zichen Ding and Qi Liu and Zhiyong Wu and Zhuosheng Zhang and Ben Kao and Lingpeng Kong},
+  journal={arXiv preprint arXiv:2510.24411},
+  year={2025}
+}
+
+```
