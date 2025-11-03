@@ -1,4 +1,5 @@
 # OS-Sentinel
+
 [![arXiv](https://img.shields.io/badge/arXiv-2510.24411-b31b1b.svg)](http://arxiv.org/abs/2510.24411) 
 ![License](https://img.shields.io/badge/License-MIT-blue)
 [![Paper page](https://huggingface.co/datasets/huggingface/badges/resolve/main/paper-page-sm.svg)](https://huggingface.co/papers/2510.24411)
@@ -48,7 +49,21 @@
 
     this method fix the system states before each action and `env.record("terminate()")` is needed at the end or the last action cannot be recorded.
 
+### 📏 Benchmark
+
+1. Download our trajectories data at [OS-Copilot/MobileRisk](https://huggingface.co/datasets/OS-Copilot/MobileRisk);
+
+2. Extract the zip files and run eval script:
+
+    ```shell
+    unzip '*.zip'
+    python pipeline/4_eval.py
+    ```
+
+    Don't forget to fill in `_API_KEY`.
+
 ## 📋 Citation
+
 ```bibtex
 @article{sun2025ossentinel,
   title={OS-Sentinel: Towards Safety-Enhanced Mobile GUI Agents via Hybrid Validation in Realistic Workflows},
