@@ -65,7 +65,9 @@
     - `pipeline/4_eval.py` is for typical VLM evaluation;
     - `pipeline/4.5_eval.py` is for text-only LLM evaluation;
     - `pipeline/8_tag.py` is for risk tag evaluation of VLM;
-    - `pipeline/9_cons.py` is for recorded trajectories via mobile agent instead of our hand-made ones.
+    - `pipeline/9_cons.py` is for recorded trajectories via mobile agent instead of our hand-made ones;
+
+3. Run `pipeline/6_multi_method_consistency.py` after `result.json` is ready.
 
 ## 📋 Citation
 
@@ -76,5 +78,4 @@
   journal={arXiv preprint arXiv:2510.24411},
   year={2025}
 }
-
 ```
