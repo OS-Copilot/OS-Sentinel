@@ -10,7 +10,10 @@ import traceback
 from PIL import Image
 from tqdm import tqdm
 
-WORD_PATH = "sensitive_words.txt"
+WORD_PATH = os.path.join(
+    os.path.split(__file__)[0],
+    "../mobile_safety/sensitive_words.txt"
+)
 DATA_PATH = "kata"
 RESULT_PATH = "_result.json"
 
