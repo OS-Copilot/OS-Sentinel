@@ -20,7 +20,17 @@
     pip install -r requirements.txt
     ```
 
-2. [Install Node.js and Appium following the instruction from MobileSafetyBench](https://github.com/jylee425/mobilesafetybench?tab=readme-ov-file#appium);
+2. Install Node.js and Appium:
+
+    ```shell
+    wget -O install_nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh
+    bash install_nvm.sh
+    nvm install v18.12.1
+    npm install -g appium appium-doctor
+    npm install wd
+    appium driver install uiautomator2
+    ```
+
 3. Run root.py and it will configure the environment of MobileSafetyBench automatically.
 
     ```shell
