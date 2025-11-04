@@ -67,17 +67,17 @@
 
     ```shell
     unzip '*.zip'
-    python pipeline/4_eval.py
+    python pipeline/eval.py
     ```
 
     Don't forget to fill in `_API_KEY`.
 
-    - `pipeline/4_eval.py` is for typical VLM evaluation;
-    - `pipeline/4.5_eval.py` is for text-only LLM evaluation;
-    - `pipeline/8_tag.py` is for risk tag evaluation of VLM;
-    - `pipeline/9_cons.py` is for recorded trajectories via mobile agent instead of our hand-made ones;
+    - `pipeline/eval.py` is for typical VLM evaluation;
+    - `pipeline/eval_llm.py` is for text-only LLM evaluation;
+    - `pipeline/tag.py` is for risk tag evaluation of VLM;
+    - `pipeline/cons.py` is for recorded trajectories via mobile agent instead of our hand-made ones;
 
-3. Run `pipeline/6_multi_method_consistency.py` after `result.json` is ready.
+3. Run `pipeline/multi_method_consistency.py` after `result.json` is ready.
 
 ## 📋 Citation
 
