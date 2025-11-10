@@ -26,7 +26,8 @@
     wget -O install_nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh
     bash install_nvm.sh
     nvm install v18.12.1
-    npm install -g appium appium-doctor
+    npm install -g appium@2.5.4
+    npm install -g appium-doctor
     npm install wd
     appium driver install uiautomator2
     ```
