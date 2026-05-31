@@ -6,6 +6,12 @@
 [![Discord](https://img.shields.io/discord/1222168244673314847?logo=discord&style=flat)](https://discord.com/invite/rXS2XbgfaD)
 [![🌐 Website](https://img.shields.io/badge/Website-🌐-informational)](https://qiushisun.github.io/OS-Sentinel-Home/)
 
+## 📢 News
+
+- **2026-04-27** 🏆 OS-Sentinel received the **Best Paper Award** at [AIWILRD@ICLR'26](https://qiushisun.github.io/OS-Sentinel-Home/)! 🎉✨
+- **2026-04-08** 🎊 OS-Sentinel was accepted to **ACL'26** as an **Oral Paper**! 🎤🚀
+- **2025-10-29** Initial release of our [paper](http://arxiv.org/abs/2510.24411), environment, benchmark, and [🌐 Project Website](https://qiushisun.github.io/OS-Sentinel-Home/). Check it out! 🚀
+
 ## 🛠️ Usage
 
 ### 📦 Installation
@@ -81,6 +87,9 @@
 3. Run `pipeline/multi_method_consistency.py` after `result.json` is ready.
 
 ## 📋 Citation
+
+
+🫶 If you are interested in our work or find this repository / our data helpful, please consider using the following citation format when referencing our paper:
 
 ```bibtex
 @article{sun2025ossentinel,
